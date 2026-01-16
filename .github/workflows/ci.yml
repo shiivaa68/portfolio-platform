@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # -------- Backend --------
+      - name: Install backend deps
+        working-directory: apps/backend
+        run: npm ci
+
+      - name: Backend typecheck
+        working-directory: apps/backend
+        run: npm run typecheck
+
+      - name: Backend build
+        working-directory: apps/backend
+        run: npm run build
+
+      # -------- Frontend --------
+      - name: Install frontend deps
+        working-directory: apps/frontend
+        run: npm ci
+
+      - name: Frontend typecheck
+        working-directory: apps/frontend
+        run: npm run typecheck
+
+      - name: Frontend build
+        working-directory: apps/frontend
+        run: npm run build

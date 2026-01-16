@@ -5,15 +5,13 @@ WORKDIR /app
 # Copy package files
 COPY apps/backend/package*.json ./
 
-# Install all dependencies (including dev for build)
-RUN npm ci
-
-# Copy Prisma files
+# Copy Prisma files BEFORE npm ci (needed for postinstall script)
 COPY apps/backend/prisma ./prisma
 COPY apps/backend/prisma.config.ts ./
 
-# Generate Prisma Client
-RUN npx prisma generate
+# Install all dependencies (including dev for build)
+# postinstall will run prisma generate automatically
+RUN npm ci
 
 # Copy source files
 COPY apps/backend/src ./src

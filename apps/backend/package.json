@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "./node_modules/.bin/tsx watch src/server.ts",
     "typecheck": "tsc --noEmit",
-    "build": "./node_modules/.bin/prisma generate && tsc",
+    "build": "npx prisma generate && tsc",
     "start": "node dist/server.js",
-    "postinstall": "./node_modules/.bin/prisma generate"
+    "postinstall": "npx prisma generate"
   },
   "keywords": [],
   "author": "",

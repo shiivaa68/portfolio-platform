@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: portfolio-backend
+    env: node
+    plan: free
+    buildCommand: cd apps/backend && npm install && npm run build
+    startCommand: cd apps/backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+    healthCheckPath: /health
+
+  - type: web
+    name: portfolio-frontend
+    env: static
+    buildCommand: cd apps/frontend && npm install && npm run build
+    staticPublishPath: apps/frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://portfolio-backend.onrender.com/api

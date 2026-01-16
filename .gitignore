@@ -1,21 +1,10 @@
-# Node
-node_modules
-dist
-build
-
-# Env files
+# env
 .env
 .env.*
-!.env.example
 
-# Prisma
-apps/backend/prisma/generated
-apps/backend/prisma/*.db
+# docker volumes
+postgres_data
 
-# Docker
-*.log
-docker-data
-postgres-data
-
-# OS
-.DS_Store
+# node
+node_modules
+dist

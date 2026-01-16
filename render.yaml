@@ -24,4 +24,4 @@ services:
     staticPublishPath: apps/frontend/dist
     envVars:
       - key: VITE_API_URL
-        value: https://portfolio-backend.onrender.com/api
+        value: https://portfolio-backend-dwkj.onrender.com/api
